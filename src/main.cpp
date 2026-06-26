@@ -1,18 +1,14 @@
 #include <Arduino.h>
-
-// put function declarations here:
-int myFunction(int, int);
+extern "C" {
+    #include "uart_io.h"
+}
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  uart_io_init(115200);
+  uart_io_puts("UART IO test\r\n");
+  uart_io_printf("Number: %d\r\n", 42);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
 }
