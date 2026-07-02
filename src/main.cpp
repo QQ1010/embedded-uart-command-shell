@@ -8,6 +8,7 @@ extern "C" {
     #include "cmd_system.h"
     #include "cmd_gpio.h"
     #include "hal_gpio.h"
+    #include "task_monitor.h"
 }
 
 void setup() {
@@ -16,8 +17,8 @@ void setup() {
   cmd_system_register_all();
   cmd_gpio_init(hal_gpio_get_esp32_driver());
   cmd_gpio_register_all();
+  task_monitor_start();
   uart_io_puts("\r\n=== RTOS Shell ===\r\n");
-
   xTaskCreate(shell_task, "shell", 4096, NULL, 2, NULL);
 
 }
